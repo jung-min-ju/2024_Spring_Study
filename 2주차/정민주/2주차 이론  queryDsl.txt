@@ -1,0 +1,4 @@
+2주차 이론 : queryDsl
+queryDsl : https://velog.io/@jung-min-ju/JPQL-VS-QueryDSL-VS-%EC%BF%BC%EB%A6%AC%EB%A9%94%EC%86%8C%EB%93%9C
+sql vs jpql : https://velog.io/@jung-min-ju/SQL-vs-JPQL
+q클래스 : https://velog.io/@jung-min-ju/Q%ED%81%B4%EB%9E%98%EC%8A%A4
