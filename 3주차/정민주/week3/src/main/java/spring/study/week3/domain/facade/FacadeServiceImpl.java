@@ -29,7 +29,6 @@ public class FacadeServiceImpl implements FacadeService {
     public List<Post> createTestingPost(SeedDto seedDto) {
         //1. userList 가져오기
         List<User> userList = userService.getAllUser();
-        System.out.println("뭐지?");
         //2. post 생성
         return postService.createTestingPost(seedDto, userList);
     }
