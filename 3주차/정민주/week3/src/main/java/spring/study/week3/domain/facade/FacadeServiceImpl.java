@@ -34,6 +34,5 @@ public class FacadeServiceImpl implements FacadeService {
         return postService.createTestingPost(seedDto, userList);
     }
 
-
 }
 
