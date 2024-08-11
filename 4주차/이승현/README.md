@@ -4,20 +4,25 @@
 
 ## 로그인, 회원가입 구현
 ## 1. 회원가입
-* EndPoint: POST /api/auth/signUp
+>* EndPoint: POST /api/auth/signUp
 회원가입 API
+
+### ** 과정 **
 1. 사용자는 이름, 이메일, 전화번호, 비밀번호, 비밀번호 재확인 칸을 통해 회원가입을 진행합니다.
 2. 이메일 인증/전화번호 인증을 하지 않은 사용자는 회원가입을 진행할 수 없습니다.
 3. 비밀번호 재확인을 하지 않은 사용자는 회원가입을 진행할 수 없습니다.
 
 ### 1-1. 이메일 인증 API
-* Endpoint: POST /api/auth/email/send
+
+### **전송 과정**
+> Endpoint: POST /api/auth/email/send
 이메일로 인증 번호 전송 api
 
 1. 사용자가 해당 api의 body에 인증하고 싶은 이메일을 담아 서버에게 요청합니다.
 2. 서버는 6글자의 랜덤 인증 번호를 생성 후, 사용자의 이메일로 해당 인증 번호를 전송합니다.
 
-* Endpoint: POST /api/auth/email/check
+### **확인 과정**
+> Endpoint: POST /api/auth/email/check
 이메일 인증 번호 확인 api
 
 1. 사용자는 본인의 이메일로 전송된 인증번호 확인 후, 해당 api로 본인의 이메일 및 인증번호를 전송합니다.
@@ -25,14 +30,18 @@
 
 (주의할 점 : 인증번호는 매번 달라야 합니다.)
 
+-----
+
 ### 1-2. 전화번호 인증 API
-* Endpoint: POST /api/auth/phone/send
+### **전송 과정**
+>  Endpoint: POST /api/auth/phone/send
 전화번호로 인증 번호 전송 api
 
 1. 사용자가 해당 api의 body에 인증하고 싶은 전화번호를 담아 서버에게 요청합니다. (- 없이 11자리로만 전송합니다.)
 2. 서버는 6글자의 랜덤 인증 번호를 생성 후, 사용자의 전화번호로 해당 인증 번호를 전송합니다.
 
-* Endpoint: POST /api/auth/phone/check
+### **확인 과정**
+>* Endpoint: POST /api/auth/phone/check
 전화번호 인증 번호 확인 api
 
 1. 사용자는 본인의 문자로 전송된 인증번호 확인 후, 해당 api로 본인의 전화번호 및 인증번호를 전송합니다.
@@ -40,14 +49,20 @@
 
 (주의할 점 : 인증번호는 매번 달라야 합니다.)
 
+-----
+
 ### 1-3. 비밀번호 일치 Api
-* EndPoint: POST /api/auth/password/check
+> * EndPoint: POST /api/auth/password/check
 비밀번호 일치 확인 API
 
+### **과정**
 1. 사용자는 해당 API로 비밀번호 및 비밀번호 재확인 값을 보냅니다.
 2. 서버는 두 값이 일치하는 지 확인 후, 일치한다면 OK, 일치하지 않다면 에러를 발생시킵니다.
 
+-------
+
 ## 2. 로그인
+### **과정**
 1. 사용자는 특정 이메일과 비밀번호를 사용하여 로그인을 진행합니다.
 2. 로그인이 통과된다면 response에는 accessToken과 refreshToken을 담아 전송합니다.
 3. 로그인이 통과되지 못한다면 에러를 발생시킵니다.
@@ -56,20 +71,24 @@
 * EndPoint: POST /api/auth/signIn
 로그인 API
 
+### ** 과정 **
 1. 사용자가 해당 API로 요청 보낼 시, 로그인 정보가 일치하다면 responseBody에 json 형태로 accessToken과 refreshToken을 보냅니다.
 
-## Jwt 
+----
+
+## 3. Jwt
+### **과정**
 1. 로그인 시, 해당 사용자에게 새롭게 부여되는 accesesToken/refreshToken을 부여합니다.
 2. 모든 http 요청에서 인가 여부를 확인합니다.
   -> 만약 인가가 필요하지 않은 url의 경우, jwt 로직을 진행하지 않고 바로 컨트롤러로 넘어갑니다.
   -> 만약 인가가 필요한 경우, 헤더에서 토큰을 가져와 jwt 로직을 진행합니다.
 
-### jwt 로직
+### 3-1. jwt 로직
 1. 헤더에서 토큰(accessToken)을 가져옵니다.
 2. 인가가 필요한 url인데 헤더에 토큰이 없는 경우/토큰 만료여부/비밀키 일치여부 등등 토큰과 관련된 예외처리를 구현합니다. (만약 발생 가능한 예외가 있는데도 잡지 못하고 jwt 필터를 통과해선 안됩니다.)
 3. 해당 토큰에서 정보를 가져와 userDetails 객체 생성 후, authentication 객체로 생성합니다.
 
-### 어세스 토큰 재발급
+### 3-2. 어세스 토큰 재발급
 * EndPoint: POST /jwt/update/access/token
 어세스 토큰 재발급 API 
 
