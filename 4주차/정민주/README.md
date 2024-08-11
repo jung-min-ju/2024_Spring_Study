@@ -91,7 +91,7 @@
 3. 해당 토큰에서 정보를 가져와 userDetails 객체 생성 후, authentication 객체로 생성합니다.
 
 ### 3-2. 어세스 토큰 재발급
-* EndPoint: POST /jwt/update/access/token
+> EndPoint: POST /jwt/update/access/token
 어세스 토큰 재발급 API 
 
 1. 헤더에 refreshToken을 넣어 전송합니다.
@@ -147,7 +147,8 @@ Varchar(255), 사용자 비밀번호
 
 ## 2. API 정의
 ### 2-1. 파일 업로드 API
-* Endpoint: POST /api/files/upload
+> Endpoint: POST /api/files/upload
+
 * 설명: 사용자가 파일을 업로드하면 서버에 저장되고, 파일의 메타데이터가 데이터베이스에 저장됩니다. 파일은 업로드한 사용자와 연관됩니다.
 * Request Body:
 multipart/form-data 형식으로 파일을 업로드
@@ -158,10 +159,10 @@ Status:
   *  Error: 400 Bad Request (파일이 없거나 잘못된 요청)
 
 ### 2-2. 파일 목록 조회 API
-* Endpoint: GET /api/files/{id}
+> Endpoint: GET /api/files/{id}
+
 설명: 서버에 본인이 업로드 한 파일의 목록을 조회합니다. (본인이 올린 파일이 아니라면 조회할 수 없습니다.)
 id: 사용자의 고유 id를 의미합니다.
-* Res제 할 수 없습니다.) 
 * Path Variable:
 id: 파일의 고유 ID
 * Response: Status:
