@@ -168,6 +168,27 @@ id: 파일의 고유 ID
 * Response: Status:
   *  200 OK (삭제 성공 시)
    * Error: 404 Not Found (지정된 ID의 파일이 존재하지 않는 경우)
+ 
+ ### 2-3. 파일 다운로드 API
+> Endpoint: GET /api/files/{id}/download
+
+* 설명: 지정된 ID의 파일을 다운로드합니다. 사용자는 자신의 파일만 다운로드할 수 있습니다.
+* Path Variable:
+id: 파일의 고유 ID
+* Response:
+Status:
+  *  200 OK (정상 처리 시)
+  * Error: 404 Not Found (지정된 ID의 파일이 존재하지 않거나, 사용자가 해당 파일에 접근할 권한이 없을 시)
+
+### 2-4. 파일 삭제 API
+> Endpoint: DELETE /api/files/{id}
+
+* 설명: 지정된 ID의 파일을 서버와 데이터베이스에서 삭제합니다. 사용자는 자신의 파일만 삭제할 수 있습니다.
+* Path Variable:
+id: 파일의 고유 ID
+* Response: Status:
+  *  200 OK (삭제 성공 시)
+   * Error: 404 Not Found (지정된 ID의 파일이 존재하지 않거나, 사용자가 해당 파일에 접근할 권한이 없을 시)
 
 ## 3. 주요 기능 설명
 ### 사용자 관리:
