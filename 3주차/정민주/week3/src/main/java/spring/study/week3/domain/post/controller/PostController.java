@@ -24,7 +24,6 @@ public class PostController {
     @PostMapping("/testing/testingPost")
     public ResponseEntity<?> createTestingPost (@RequestBody @Valid SeedDto seedDto, BindingResult bindingResult) throws IOException {
         handleBindingErrors(bindingResult);
-        System.out.println("컨트롤러");
         List<Post> postList = facadeService.createTestingPost(seedDto);
         return ResponseEntity.ok(postList );
     }

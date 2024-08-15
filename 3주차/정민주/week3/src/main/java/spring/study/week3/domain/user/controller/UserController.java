@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(userRspDtos);
     }
 
-    public void handleBindingErrors(BindingResult bindingResult) {
+    public void handleBindingErrors (BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new BindingErrors();
         }
