@@ -4,6 +4,7 @@ package com.example.sql_processing_ability.user;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Getter
@@ -19,5 +20,4 @@ public class UserModel {
 
     @Column(name = "password")
     private String password;
-
 }

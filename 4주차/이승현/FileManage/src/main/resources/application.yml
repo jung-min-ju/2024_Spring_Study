@@ -1,0 +1,63 @@
+cloud:
+  aws:
+    s3:
+      bucket: springstudybucket
+    stack.auto: false
+    region.static: ap-southeast-2
+    credentials:
+      accessKey: ${S3_ACCESSKEY}
+      secretKey: ${S3_SECRETKEY}
+
+
+jwt:
+  issuer: ${JWT_ISSUER:ddong51155@gmail.com}
+  secret-key: ${JWT_KEY:exampleSecretKeyForFileManagerSystemAccessSecretKeyTestForPadding}
+  access-expiration: ${JWT_ACCESS_EXPIRATION:1800000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:86400000}
+
+token:
+  refresh: ${REDIS_REFRESH_EXPIRATION:648000}
+
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:file:~/fileManager;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enabled: true
+            required: true
+          auth: true
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+
+coolsms:
+  api:
+    key: ${COOLSMS_API_KEY}
+    secret: ${COOLSMS_API_SECRET}
+    number: ${PHONE_NUMBER:01045863259}
